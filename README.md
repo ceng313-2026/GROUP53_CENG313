@@ -24,6 +24,7 @@ https://www.kaggle.com/competitions/playground-series-s5e1
 | Date | What | 
 |------|------| 
 | 2026-11-07 | Repo created |
+| 2026-11-08 | Basic EDA done | 
 
 ## Kaggle Submission History
 | Date | Method | Public Score |
