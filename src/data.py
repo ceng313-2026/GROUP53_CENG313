@@ -8,7 +8,7 @@ def load_data(data_dir):
     sample_sub = pd.read_csv(data_dir + 'sample_submission.csv')
     return train, test, sample_sub
 
-    def add_date_features(df):
+def add_date_features(df):
     #Extracts features from the date column.
 
     df = df.copy()
@@ -20,4 +20,3 @@ def load_data(data_dir):
     df['is_weekend'] = (df['dayofweek'] >= 5).astype(int)
     return df
 
-    
