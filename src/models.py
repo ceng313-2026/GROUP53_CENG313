@@ -26,7 +26,7 @@ def train_ridge(train_df, val_df, alpha=1.0):
 #baseline 3 
 
 def train_lgbm(train_df, val_df, n_estimators=500, learning_rate=0.05):
-    """LightGBM'i log1p hedefiyle eğitir, validation tahminlerini (orijinal ölçekte) döner."""
+    #Trains LightGBM using a log1p-transformed target and returns validation predictions (on the original scale).
     X_tr = train_df[CAT_COLS + NUM_COLS].copy()
     X_va = val_df[CAT_COLS + NUM_COLS].copy()
     for c in CAT_COLS:
@@ -38,3 +38,18 @@ def train_lgbm(train_df, val_df, n_estimators=500, learning_rate=0.05):
     model = lgb.LGBMRegressor(n_estimators=n_estimators, learning_rate=learning_rate, verbose=-1)
     model.fit(X_tr, y_tr)
     return np.expm1(model.predict(X_va))
+
+
+def fit_predict_lgbm(train_df, test_df, n_estimators=500, learning_rate=0.05):
+    #Trains LightGBM using a log1p-transformed target and returns predictions for the test set (on the original scale).
+    X_tr = train_df[CAT_COLS + NUM_COLS].copy()
+    X_te = test_df[CAT_COLS + NUM_COLS].copy()
+    for c in CAT_COLS:
+        X_tr[c] = X_tr[c].astype('category')
+        X_te[c] = pd.Categorical(X_te[c], categories=X_tr[c].cat.categories)
+
+    y_tr = np.log1p(train_df['num_sold'])
+
+    model = lgb.LGBMRegressor(n_estimators=n_estimators, learning_rate=learning_rate, verbose=-1)
+    model.fit(X_tr, y_tr)
+    return np.expm1(model.predict(X_te))
