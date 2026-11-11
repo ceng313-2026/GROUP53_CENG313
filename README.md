@@ -57,11 +57,13 @@ Reusable code is in `src/` (`data.py`, `models.py`, `utils.py`) and used by the 
 The errors are concentrated in Norway and Kenya. Norway's yearly mean sales decrease after 2011 (1622 in 2011, 1131 in 2016). Since the baseline models do not use the year, they learn the average level of the training years and over-predict in 2016. This will be addressed in Assignment 2.
 
 ## How to Run
-1. Download `train.csv`, `test.csv` and `sample_submission.csv` from the Kaggle competition page and upload them to a Google Drive folder named `CENG313_data`.
-2. Open `assignment1_eda_baseline.ipynb` in Google Colab.
-3. Run the first cell (clones this repository and adds `src/` to the path), then mount Google Drive.
-4. Run the remaining cells in order (Runtime -> Run all).
-5. Required libraries are listed in `requirements.txt`.
+1. Download `train.csv`, `test.csv` and `sample_submission.csv` from the Kaggle competition's Data tab.
+2. Place them in a folder (the `data/` folder in the repository root is git-ignored, or a Google Drive folder such as `CENG313_data/`).
+3. Open `assignment1_eda_baseline.ipynb` in Google Colab.
+4. Run the first cell (clones this repository and adds `src/` to the path), then mount Google Drive.
+5. Set `DATA_DIR` in the notebook to the folder that contains the CSV files.
+6. Run all cells in order (Runtime -> Run all).
+7. Install the required libraries with `pip install -r requirements.txt` (Colab already has most of them).
 
 ## Progress Log
 | Date | What |
